@@ -13,7 +13,7 @@ A responsive product catalog application built with React, TypeScript, Redux, an
 - Tailwind CSS styling
 
 ## Prerequisites
-- Node.js (v18+)
+- Node.js
 - npm or yarn
 
 ## Installation
@@ -65,8 +65,6 @@ npm run deploy
 - Tailwind CSS
 - Vite
 - Axios
-- Jest
-- React Testing Library
 
 
 ## Environment Variables
@@ -79,10 +77,7 @@ No environment variables are required for this project.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-Distributed under the MIT License.
-
 ## Contact
-Your Name - odeyemioluwatobiloba11@gmail.com
+Name - odeyemioluwatobiloba11@gmail.com
 
 Project Link: [https://github.com/odeyemitobi/product-catalog](https://github.com/odeyemitobi/product-catalog)
