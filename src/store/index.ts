@@ -1,4 +1,3 @@
-
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import productReducer from './productSlice';
@@ -10,6 +9,5 @@ export const store = configureStore({
   },
 });
 
-// Typed hooks for better type inference
 export const useAppDispatch = () => useDispatch<typeof store.dispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

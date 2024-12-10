@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product } from '../../types/product';
+import { Product } from '../../../types/product';
 import { FaStar } from "react-icons/fa";
 
 interface ProductCardProps {
@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+    <div className="bg-white dark:bg-[#17181A] rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
       <div className="relative h-48 md:h-64 w-full flex items-center justify-center p-4">
         <img 
           src={product.image} 
@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
           {product.title}
         </h3>
         <div className="flex justify-between items-center mt-2">
-          <span className="text-xl font-bold text-green-600 dark:text-green-400">
+          <span className="text-xl font-bold text-[#E85D04]">
             ${product.price.toFixed(2)}
           </span>
           <div className="flex items-center">
@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
               />
             ))}
             <span className="ml-1 text-sm text-gray-500 dark:text-gray-400">
-              ({product.rating.rate.toFixed(1)})
+              {product.rating.rate.toFixed(1)}
             </span>
           </div>
         </div>

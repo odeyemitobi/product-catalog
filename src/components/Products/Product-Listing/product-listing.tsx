@@ -1,21 +1,27 @@
 import React, { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../store";
+import { useAppSelector, useAppDispatch } from "../../../store";
 import {
   fetchProducts,
   setSearchTerm,
-  sortProductsByPrice,
-  sortProductsByRating,
-} from "../../store/productSlice";
-import ProductCard from "./product-card";
+} from "../../../store/productSlice";
+import { useProductSort } from './hooks';
+import ProductCard from "../Product-Card/product-card";
+import Loader from "../../Loader"; 
 import { IoSearch } from "react-icons/io5";
-import { TbSortAscending } from "react-icons/tb";
-import { HiSortDescending } from "react-icons/hi";
+import { TbSortAscending, TbSortDescending } from "react-icons/tb";
 
 const ProductListing: React.FC = () => {
   const dispatch = useAppDispatch();
   const { filteredProducts, loading, error, searchTerm } = useAppSelector(
     (state) => state.products
   );
+
+  const {
+    priceSortOrder,
+    ratingSortOrder,
+    handlePriceSort,
+    handleRatingSort
+  } = useProductSort();
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -25,16 +31,8 @@ const ProductListing: React.FC = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const handlePriceSort = () => {
-    dispatch(sortProductsByPrice("asc"));
-  };
-
-  const handleRatingSort = () => {
-    dispatch(sortProductsByRating("desc"));
-  };
-
   if (loading)
-    return <div className="text-center text-xl py-10">Loading products...</div>;
+    return <Loader />;
   if (error)
     return <div className="text-center text-red-500 py-10">{error}</div>;
 
@@ -47,22 +45,32 @@ const ProductListing: React.FC = () => {
             placeholder="Search products..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-[#17181A] dark:text-white dark:border-transparent focus:outline-none"
           />
           <IoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
         <div className="flex space-x-4">
           <button
             onClick={handlePriceSort}
-            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            className="flex items-center px-4 py-2 bg-[#E85D04] rounded-xl"
           >
-            <TbSortAscending className="mr-2" /> Sort by Price
+            {priceSortOrder === 'asc' ? (
+              <TbSortAscending className="mr-2" />
+            ) : (
+              <TbSortDescending className="mr-2" />
+            )}{' '}
+            Sort by Price
           </button>
           <button
             onClick={handleRatingSort}
-            className="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+            className="flex items-center px-4 py-2 bg-[#E85D04] rounded-xl"
           >
-            <HiSortDescending className="mr-2" /> Sort by Rating
+            {ratingSortOrder === 'asc' ? (
+              <TbSortAscending className="mr-2" />
+            ) : (
+              <TbSortDescending className="mr-2" />
+            )}{' '}
+            Sort by Rating
           </button>
         </div>
       </div>

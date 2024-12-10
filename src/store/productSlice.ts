@@ -1,9 +1,7 @@
-// src/store/productSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Product, ProductState } from '../types/product';
 
-// Async thunk for fetching products
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (_, { rejectWithValue }) => {

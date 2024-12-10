@@ -1,50 +1,88 @@
-# React + TypeScript + Vite
+# Product Catalog Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+A responsive product catalog application built with React, TypeScript, Redux, and Tailwind CSS. The app fetches product data from the Fake Store API and provides features like live search, sorting, and dark mode.
 
-Currently, two official plugins are available:
+## Features
+- Responsive grid/list product display
+- Live search functionality
+- Product sorting by price and rating
+- Dark mode toggle
+- TypeScript type safety
+- Redux state management
+- Tailwind CSS styling
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
+- Node.js (v18+)
+- npm or yarn
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository
+```bash
+git clone https://github.com/odeyemitobi/product-catalog.git
+cd product-catalog
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install dependencies
+```bash
+npm install
 ```
+
+## Running the Application
+
+### Development Mode
+```bash
+npm run dev
+```
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Preview Production Build
+```bash
+npm run preview
+```
+
+## Running Tests
+```bash
+npm test
+```
+
+## Deployment
+The project is configured for easy deployment to Vercel. 
+
+```bash
+npm run deploy
+```
+
+## Technologies Used
+- React 18
+- TypeScript
+- Redux Toolkit
+- Tailwind CSS
+- Vite
+- Axios
+- Jest
+- React Testing Library
+
+
+## Environment Variables
+No environment variables are required for this project.
+
+## Contributing
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+Distributed under the MIT License.
+
+## Contact
+Your Name - odeyemioluwatobiloba11@gmail.com
+
+Project Link: [https://github.com/odeyemitobi/product-catalog](https://github.com/odeyemitobi/product-catalog)
