@@ -1,15 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { Product, ProductState } from '../types/product';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { Product, ProductState } from "../types/product";
 
 export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
+  "products/fetchProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
+      const response = await axios.get<Product[]>(
+        "https://fakestoreapi.com/products"
+      );
       return response.data;
     } catch {
-      return rejectWithValue('Failed to fetch products');
+      return rejectWithValue("Failed to fetch products");
     }
   }
 );
@@ -17,33 +19,41 @@ export const fetchProducts = createAsyncThunk(
 const initialState: ProductState = {
   products: [],
   filteredProducts: [],
-  searchTerm: '',
+  searchTerm: "",
   loading: false,
   error: null,
+  currentPage: 1,
+  productsPerPage: 8,
 };
 
 const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
-      state.filteredProducts = state.products.filter(product => 
+      state.filteredProducts = state.products.filter((product) =>
         product.title.toLowerCase().includes(action.payload.toLowerCase())
       );
+      state.currentPage = 1;
     },
-    sortProductsByPrice: (state, action: PayloadAction<'asc' | 'desc'>) => {
-      const sortedProducts = [...state.filteredProducts].sort((a, b) => 
-        action.payload === 'asc' ? a.price - b.price : b.price - a.price
+    sortProductsByPrice: (state, action: PayloadAction<"asc" | "desc">) => {
+      const sortedProducts = [...state.filteredProducts].sort((a, b) =>
+        action.payload === "asc" ? a.price - b.price : b.price - a.price
       );
       state.filteredProducts = sortedProducts;
     },
-    sortProductsByRating: (state, action: PayloadAction<'asc' | 'desc'>) => {
-      const sortedProducts = [...state.filteredProducts].sort((a, b) => 
-        action.payload === 'asc' ? a.rating.rate - b.rating.rate : b.rating.rate - a.rating.rate
+    sortProductsByRating: (state, action: PayloadAction<"asc" | "desc">) => {
+      const sortedProducts = [...state.filteredProducts].sort((a, b) =>
+        action.payload === "asc"
+          ? a.rating.rate - b.rating.rate
+          : b.rating.rate - a.rating.rate
       );
       state.filteredProducts = sortedProducts;
-    }
+    },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,10 +73,11 @@ const productSlice = createSlice({
   },
 });
 
-export const { 
-  setSearchTerm, 
-  sortProductsByPrice, 
-  sortProductsByRating 
+export const {
+  setSearchTerm,
+  sortProductsByPrice,
+  sortProductsByRating,
+  setCurrentPage,
 } = productSlice.actions;
 
 export default productSlice.reducer;

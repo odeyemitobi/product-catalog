@@ -17,6 +17,8 @@ export interface Product {
     searchTerm: string;
     loading: boolean;
     error: string | null;
+    currentPage: number;
+    productsPerPage: number;
   }
   
   export interface RootState {
