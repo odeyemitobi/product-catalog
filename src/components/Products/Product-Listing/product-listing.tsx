@@ -5,7 +5,7 @@ import { useProductSort } from "./hooks";
 import ProductCard from "../Product-Card/product-card";
 import Loader from "../../Loader";
 import Pagination from "../../Pagination";
-import { IoSearch } from "react-icons/io5";
+import { FiSearch } from "react-icons/fi";
 import { TbSortAscending, TbSortDescending } from "react-icons/tb";
 
 const ProductListing: React.FC = () => {
@@ -52,7 +52,7 @@ const ProductListing: React.FC = () => {
             onChange={handleSearchChange}
             className="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-[#17181A] dark:text-white dark:border-transparent focus:outline-none"
           />
-          <IoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
         <div className="flex space-x-4">
           <button
